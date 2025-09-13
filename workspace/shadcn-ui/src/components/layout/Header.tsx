@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
+import { LoginForm } from '@/pages/login-form';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Search, Heart, MessageCircle, Bell, User, Settings, LogOut, Menu, MapPin,AmpersandIcon,BookDashed, LayoutDashboard, AlignCenter,MagnetIcon,ShieldAlertIcon} from 'lucide-react';
+import { Search, Heart, MessageCircle, Bell, User, Settings, LogOut, Menu, MapPin, AmpersandIcon, BookDashed, LayoutDashboard, AlignCenter, MagnetIcon, ShieldAlertIcon, LogIn } from 'lucide-react';
 interface HeaderProps {
   onLocationSelectClick: () => void;
   onSearch: (query: string) => void;
@@ -14,14 +16,15 @@ interface HeaderProps {
 
 export default function Header({ onLocationSelectClick, onSearch, currentLocation }: HeaderProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoggedIn] = useState(true); // Mock login state
+  const [isLoggedIn] = useState(true);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(searchQuery);
   };
- 
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -36,8 +39,8 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
         {/* Location Selector */}
         <div className="flex items-center space-x-2">
           <MapPin className="h-4 w-4 text-muted-foreground" />
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             onClick={onLocationSelectClick}
             className="text-sm"
           >
@@ -79,7 +82,6 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
                   2
                 </Badge>
               </Button>
-              
               {/* User Menu */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -104,20 +106,45 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
                   <DropdownMenuItem><LayoutDashboard className="mr-2 h-4 w-4" /> <span>Admin Panel</span></DropdownMenuItem>
                   <DropdownMenuItem><Settings className="mr-2 h-4 w-4" /> <span>Settings</span></DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
+                  <DropdownMenuItem onClick={() => setLoginModalOpen(true)}>
+                    <LogIn className="mr-2 h-4 w-4" />
+                    <span>Login</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
+                <DialogContent className="max-w-md p-0 sm:p-8 rounded-lg shadow-xl">
+                  <div className="py-2">
+                    <LoginForm />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </>
+
           ) : (
             <div className="flex items-center space-x-2">
-              <Button variant="ghost">Sign In</Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="ghost">Sign In</Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-md p-0 sm:p-8 rounded-lg shadow-xl">
+                  <DialogHeader>
+                    <DialogTitle className="text-center w-full">Login to your account</DialogTitle>
+                  </DialogHeader>
+                  <DialogClose asChild>
+                    <button className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 focus:outline-none" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </DialogClose>
+                  <div className="py-2">
+                    <LoginForm />
+                  </div>
+                </DialogContent>
+              </Dialog>
               <Button>Sign Up</Button>
             </div>
           )}
-          
+
           {/* Mobile Menu */}
           <Button variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-5 w-5" />

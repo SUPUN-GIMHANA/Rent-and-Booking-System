@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import RentalListing from './pages/RentalListing';
 import NotFound from './pages/NotFound';
-
 const queryClient = new QueryClient();
 
 const App = () => (
