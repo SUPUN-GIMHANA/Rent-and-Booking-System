@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { mockRentalItems } from '@/data/mockData';
 import { RentalCategory, RentalItem } from '@/types/rental';
 import { BookingData } from '@/types/booking';
-import { MapPin, Star, Users, Shield, Clock, CreditCard,Smartphone,Globe } from 'lucide-react';
+import { MapPin, Star, Users, Shield, Clock, CreditCard, Smartphone, Globe } from 'lucide-react';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ export default function HomePage() {
   const [selectedItem, setSelectedItem] = useState<RentalItem | null>(null);
   const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
 
-    const handleLocationSelectClick = () => {
+  const handleLocationSelectClick = () => {
     setMapOpen(true);
   };
 
-  
+
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     if (e.latLng) {
       const lat = e.latLng.lat();
@@ -60,8 +60,8 @@ export default function HomePage() {
   };
 
   const handleToggleFavorite = (itemId: string) => {
-    setFavoriteItems(prev => 
-      prev.includes(itemId) 
+    setFavoriteItems(prev =>
+      prev.includes(itemId)
         ? prev.filter(id => id !== itemId)
         : [...prev, itemId]
     );
@@ -113,7 +113,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative container mx-auto px-4 py-4 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Rent Anything,
+            Rent Anything Dilina,
             <br />
             <span className="text-yellow-400">Anywhere</span>
           </h1>
@@ -147,7 +147,7 @@ export default function HomePage() {
               Discover our most popular and highly-rated rental items
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {featuredItems.map((item) => (
               <RentalCard
@@ -160,10 +160,10 @@ export default function HomePage() {
               />
             ))}
           </div>
-          
+
           <div className="text-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               onClick={() => navigate('/browse')}
             >
               View All Rentals
@@ -181,7 +181,7 @@ export default function HomePage() {
               We make renting simple, safe, and convenient
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card>
               <CardHeader>
@@ -258,7 +258,7 @@ export default function HomePage() {
         </div>
       </section>
 
-            {/* Stats Section */}
+      {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
