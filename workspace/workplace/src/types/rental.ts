@@ -1,4 +1,5 @@
 export interface RentalItem {
+  reviews: boolean;
   id: string;
   title: string;
   description: string;

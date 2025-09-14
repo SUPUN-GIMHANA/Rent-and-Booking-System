@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,41 @@ export default function HomePage() {
   const handleLocationSelectClick = () => {
     setMapOpen(true);
   };
+
+
+
+  const heroSlides = [
+  {
+    image: "/images/post0.png",
+   
+  },
+  {
+    image: "/images/post1.png",
+  },
+  {
+    image: "/images/post2.png",
+  },
+  {
+    image: "/images/post4.png",
+  },
+  {
+    image: "/images/post5.jpg",
+  },
+  {
+    image: "/images/post6.jpg",
+  },
+];
+
+const [currentSlide, setCurrentSlide] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  }, 3000); // 1 second per slide
+
+  return () => clearInterval(interval);
+}, []);
+
 
 
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -109,27 +144,34 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-4 py-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Rent Anything Dilina,
-            <br />
-            <span className="text-yellow-400">Anywhere</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-            From vehicles to venues, equipment to electronics - find everything you need for rent in Sri Lanka
-          </p>
-          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-              Start Browsing
-            </Button>
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-              List Your Items
-            </Button>
-          </div> */}
+      <section
+        className="relative h-[300px] flex items-center justify-center text-center text-white transition-all duration-700"
+        style={{
+          backgroundImage: `url(${heroSlides[currentSlide].image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="relative z-10 max-w-3xl mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6"></h1>
+          <p className="text-xl md:text-2xl mb-8 text-blue-100 transition-opacity duration-500"></p>
+        </div>
+
+        {/* Dots Navigation */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index ? "bg-white w-6" : "bg-gray-400"
+              }`}
+            />
+          ))}
         </div>
       </section>
+
+
 
       {/* Categories Section */}
       <section className="py-16">

@@ -78,7 +78,7 @@ export default function BookingModal({ item, isOpen, onClose, onConfirmBooking }
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Item Details */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 space-y-4">
             <Card>
               <CardContent className="p-4">
                 <img 
@@ -110,6 +110,28 @@ export default function BookingModal({ item, isOpen, onClose, onConfirmBooking }
                 </div>
               </CardContent>
             </Card>
+            {/* Seller Advertisement */}
+            <Card className="border-2 border-primary shadow-md">
+              <CardContent className="p-4 text-center space-y-3">
+                <h3 className="font-bold text-lg text-primary">🔥 Special Offer from Seller 🔥</h3>
+                
+                <p className="text-sm text-muted-foreground">
+                  Book today and enjoy <span className="font-semibold text-green-600">10% OFF</span> your first rental!  
+                  Limited-time offer available until <span className="font-medium">30th September</span>.
+                </p>
+
+                <div className="flex justify-center gap-2 flex-wrap">
+                  <Badge variant="secondary">✔ Trusted Seller</Badge>
+                  <Badge variant="secondary">✔ 24/7 Support</Badge>
+                  <Badge variant="secondary">✔ Instant Booking</Badge>
+                </div>
+
+                <Button className="mt-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg">
+                  Claim Offer Now
+                </Button>
+              </CardContent>
+            </Card>
+
           </div>
 
           {/* Booking Interface */}
@@ -205,6 +227,39 @@ export default function BookingModal({ item, isOpen, onClose, onConfirmBooking }
             Proceed to Payment
           </Button>
         </DialogFooter>
+
+
+        {/* Reviews Section */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="font-semibold mb-3 flex items-center">
+              <Star className="h-5 w-5 mr-2 text-yellow-400" />
+              Customer Reviews
+            </h3>
+
+            {Array.isArray(item.reviews) && item.reviews.length > 0 ? (
+              <div className="space-y-4 max-h-48 overflow-y-auto">
+                {item.reviews.map((review, index) => (
+                  <div key={index} className="border-b pb-2">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">{review.user}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {new Date(review.date).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <div className="flex items-center text-yellow-500 text-sm">
+                      {"★".repeat(review.rating)}{"☆".repeat(5 - review.rating)}
+                    </div>
+                    <p className="text-sm mt-1">{review.comment}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">No reviews yet.</p>
+            )}
+          </CardContent>
+        </Card>
+
       </DialogContent>
     </Dialog>
   );

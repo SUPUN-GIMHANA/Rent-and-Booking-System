@@ -111,14 +111,14 @@ export default function RentalCard({item, onBookNow, onContact, isFavorite = fal
               </p>
             </div>
           </div>
-          <Button
+          {/* <Button
             variant="outline"
             size="sm"
             onClick={() => onContact(item.owner.id)}
           >
             <MessageCircle className="h-4 w-4 mr-1" />
-            Reviews
-          </Button>
+            Reviews sd
+          </Button> */}
         </div>
 
         {/* Amenities */}
@@ -156,7 +156,7 @@ export default function RentalCard({item, onBookNow, onContact, isFavorite = fal
           className="w-full"
           onClick={() => onBookNow(item)}
         >
-          Book Now
+          Check and Book Now
         </Button>
       </CardFooter>
     </Card>
