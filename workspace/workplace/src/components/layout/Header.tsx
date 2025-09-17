@@ -103,7 +103,11 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem><User className="mr-2 h-4 w-4" /><span>Profile</span> </DropdownMenuItem>
-                  <DropdownMenuItem><LayoutDashboard className="mr-2 h-4 w-4" /> <span>Admin Panel</span></DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/Index1')}>
+  <LayoutDashboard className="mr-2 h-4 w-4" /> 
+  <span>Admin Panel</span>
+</DropdownMenuItem>
+
                   <DropdownMenuItem><Settings className="mr-2 h-4 w-4" /> <span>Settings</span></DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={() => setLoginModalOpen(true)}>
