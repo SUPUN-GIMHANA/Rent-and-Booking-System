@@ -15,6 +15,7 @@ import Comments from './pages/Comments';
 import Index from './pages/Index1'; // your admin index/landing page
 import { LoginForm } from './pages/login-form';
 import Profile from './pages/Profile';
+import { SignupForm } from './pages/Signup-form';
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/RentalListing" element={<RentalListing />} />
           <Route path="/login-form" element={<LoginForm />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Signup-form" element={<SignupForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
