@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
-import { LoginForm } from '@/pages/login-form';
+import { AuthDialog } from '@/pages/login-form';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -121,7 +121,7 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
               <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
                 <DialogContent className="max-w-md p-0 sm:p-8 rounded-lg shadow-xl">
                   <div className="py-2">
-                    <LoginForm />
+                    <AuthDialog />
                   </div>
                 </DialogContent>
               </Dialog>
@@ -143,7 +143,7 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
                     </button>
                   </DialogClose>
                   <div className="py-2">
-                    <LoginForm />
+                    <AuthDialog />
                   </div>
                 </DialogContent>
               </Dialog>
