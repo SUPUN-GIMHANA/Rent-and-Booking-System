@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import CategoryGrid from '@/components/categories/CategoryGrid';
 import RentalCard from '@/components/rental/RentalCard';
-import BookingModal from '@/components/booking/BookingModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { mockRentalItems } from '@/data/mockData';
 import { RentalCategory, RentalItem } from '@/types/rental';
 import { BookingData } from '@/types/booking';
 import { MapPin, Star, Users, Shield, Clock, CreditCard, Smartphone, Globe } from 'lucide-react';
+import Footer from './footer';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -25,8 +24,6 @@ export default function HomePage() {
   const handleLocationSelectClick = () => {
     setMapOpen(true);
   };
-
-
 
   const heroSlides = [
   {
@@ -60,8 +57,6 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-
-
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     if (e.latLng) {
       const lat = e.latLng.lat();
@@ -76,7 +71,6 @@ useEffect(() => {
     }
     setMapOpen(false);
   };
-
 
   const handleLocationSelect = (location: string) => {
     setCurrentLocation(location);
@@ -170,8 +164,6 @@ useEffect(() => {
           ))}
         </div>
       </section>
-
-
 
       {/* Categories Section */}
       <section className="py-16">
@@ -323,33 +315,8 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
-
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Renting?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join thousands of satisfied customers who trust RentEasy
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
-              Browse Rentals
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-              List Your Items
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Booking Modal */}
-      <BookingModal
-        item={selectedItem}
-        isOpen={!!selectedItem}
-        onClose={() => setSelectedItem(null)}
-        onConfirmBooking={handleConfirmBooking}
-      />
+      
+        <Footer />
     </div>
   );
 }

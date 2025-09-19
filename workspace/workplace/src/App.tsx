@@ -15,7 +15,17 @@ import Comments from './pages/Comments';
 import Index from './pages/Index1'; // your admin index/landing page
 import { AuthDialog } from './pages/login-form';
 import Profile from './pages/Profile';
-
+import { SignupForm } from './pages/Signup-form';
+import SellFastPage from './pages/footer/more/SellFastPage';
+import Membership from './pages/footer/more/Membership';
+import Footer from './pages/footer';
+import Faq from './pages/footer/help/Faq';
+import Stay from './pages/footer/help/Stay';
+import Contact from './pages/footer/help/Contact';
+import AboutUs from './pages/footer/about/AboutUs';
+import Conditions from './pages/footer/about/Conditions';
+import Privacy from './pages/footer/about/Privacy';
+import Sitemap from './pages/footer/about/sitemap';
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,6 +47,19 @@ const App = () => (
           <Route path="/RentalListing" element={<RentalListing />} />
           <Route path="/login-form" element={<AuthDialog />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Signup-form" element={<SignupForm />} />
+          <Route path="/sell-fast" element={<SellFastPage />} />
+          <Route path="/Membership" element={<Membership />} />
+          <Route path="/Footer" element={<Footer />} />
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/Stay" element={<Stay />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/Conditions" element={<Conditions />} />
+          <Route path="/Privacy" element={<Privacy />} />
+          <Route path="/Sitemap" element={<Sitemap />} />
+
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

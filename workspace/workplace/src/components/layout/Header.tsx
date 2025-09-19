@@ -31,9 +31,9 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
         {/* Logo */}
         <div
           className="flex items-center space-x-4 cursor-pointer"
-          onClick={() => navigate('/')} // ✅ navigate to homepage
-        >
-          <h1 className="text-2xl font-bold text-primary">RentEasy</h1>
+          onClick={() => navigate('/')}>
+          {/* <h1 className="text-2xl font-bold text-primary">RentEasy</h1> */}
+            <img src='/images/logo.png' alt="RentEasy Logo" className="h-14 w-auto"/>
         </div>
 
         {/* Location Selector */}
