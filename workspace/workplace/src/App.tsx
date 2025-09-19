@@ -12,10 +12,9 @@ import BoostAdvertisement from './pages/BoostAdvertisement';
 import CommercialAds from './pages/CommercialAds';
 import Analytics from './pages/Analytics';
 import Comments from './pages/Comments';
-import Index from './pages/Index1'; // your admin index/landing page
+import Index from './pages/Index1';
 import { AuthDialog } from './pages/login-form';
 import Profile from './pages/Profile';
-import { SignupForm } from './pages/Signup-form';
 import SellFastPage from './pages/footer/more/SellFastPage';
 import Membership from './pages/footer/more/Membership';
 import Footer from './pages/footer';
@@ -25,7 +24,7 @@ import Contact from './pages/footer/help/Contact';
 import AboutUs from './pages/footer/about/AboutUs';
 import Conditions from './pages/footer/about/Conditions';
 import Privacy from './pages/footer/about/Privacy';
-import Sitemap from './pages/footer/about/sitemap';
+import Sitemap from './pages/footer/about/Sitemap';
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -47,7 +46,7 @@ const App = () => (
           <Route path="/RentalListing" element={<RentalListing />} />
           <Route path="/login-form" element={<AuthDialog />} />
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/Signup-form" element={<SignupForm />} />
+          {/* <Route path="/Signup-form" element={<SignupForm />} /> */}
           <Route path="/sell-fast" element={<SellFastPage />} />
           <Route path="/Membership" element={<Membership />} />
           <Route path="/Footer" element={<Footer />} />
