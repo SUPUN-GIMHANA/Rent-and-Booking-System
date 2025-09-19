@@ -13,7 +13,7 @@ import CommercialAds from './pages/CommercialAds';
 import Analytics from './pages/Analytics';
 import Comments from './pages/Comments';
 import Index from './pages/Index1'; // your admin index/landing page
-import { LoginForm } from './pages/login-form';
+import { AuthDialog } from './pages/login-form';
 import Profile from './pages/Profile';
 import { SignupForm } from './pages/Signup-form';
 import SellFastPage from './pages/footer/more/SellFastPage';
@@ -45,7 +45,7 @@ const App = () => (
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/RentalListing" element={<RentalListing />} />
-          <Route path="/login-form" element={<LoginForm />} />
+          <Route path="/login-form" element={<AuthDialog />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Signup-form" element={<SignupForm />} />
           <Route path="/sell-fast" element={<SellFastPage />} />

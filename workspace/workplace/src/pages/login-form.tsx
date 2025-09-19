@@ -1,66 +1,93 @@
-import { cn } from "@/lib/utils"
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import React, { useState } from "react"
+import { Dialog } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export function LoginForm({
-    className,
-    ...props
-}: React.ComponentProps<"form">) {
-    return (
-        <form className={cn("flex flex-col gap-6", className)} {...props}>
-            <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Login to your account</h1>
-                <p className="text-muted-foreground text-sm text-balance">
-                    Enter your email below to login to your account
+export function AuthDialog() {
+  const [isLogin, setIsLogin] = useState(true)
+  const [open, setOpen] = useState(true)
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+          {isLogin ? (
+            <>
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold">Login</h2>
+                <p className="text-sm text-muted-foreground">
+                  Enter your credentials to access your account
                 </p>
-            </div>
-            <div className="grid gap-6">
-                <div className="grid gap-3">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" required />
+              </div>
+
+              <form className="space-y-4 mt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="you@example.com" required />
                 </div>
-                <div className="grid gap-3">
-                    <div className="flex items-center">
-                        <Label htmlFor="password">Password</Label>
-                        <a
-                            href="#"
-                            className="ml-auto text-sm underline-offset-4 hover:underline"
-                        >
-                            Forgot your password?
-                        </a>
-                    </div>
-                    <Input id="password" type="password" required />
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" placeholder="********" required />
                 </div>
                 <Button type="submit" className="w-full">
-                    Login
+                  Login
                 </Button>
-                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                    <span className="bg-background text-muted-foreground relative z-10 px-2">
-                        Or continue with
-                    </span>
-                </div>
+              </form>
+
+              <p className="text-center text-sm mt-6 text-muted-foreground">
+                Don’t have an account?{" "}
                 <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full flex items-center justify-center gap-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-                    // onClick={() => {Google login logic here }}
+                  variant="link"
+                  className={cn("p-0 h-auto text-primary")}
+                  onClick={() => setIsLogin(false)}
                 >
-                    <img
-                        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                        alt="Google logo"
-                        className="h-5 w-5"
-                    />
-                    <span>Login with Google</span>
+                  Sign Up
                 </Button>
-            </div>
-            <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <Link to="/Signup-form" className="underline underline-offset-4">
-                    Sign up
-                </Link>
-            </div>
-        </form>
-    )
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold">Sign Up</h2>
+                <p className="text-sm text-muted-foreground">
+                  Create your account to get started
+                </p>
+              </div>
+
+              <form className="space-y-4 mt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" type="text" placeholder="John Doe" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="you@example.com" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input id="phone" type="tel" placeholder="+1 234 567 890" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" placeholder="********" required />
+                </div>
+                <Button type="submit" className="w-full" onClick={() => setIsLogin(true)}>
+                  Create Account
+                </Button>
+              </form>
+
+              <p className="text-center text-sm mt-6 text-muted-foreground">
+                Already have an account?{" "}
+                <Button
+                  variant="link"
+                  className={cn("p-0 h-auto text-primary")}
+                  onClick={() => setIsLogin(true)}
+                >
+                  Login
+                </Button>
+              </p>
+            </>
+          )}
+    </Dialog>
+  )
 }
