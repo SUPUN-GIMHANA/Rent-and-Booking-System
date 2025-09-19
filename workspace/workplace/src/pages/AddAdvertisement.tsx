@@ -34,17 +34,8 @@ export default function AddAdvertisement() {
     images: []
   });
 
-  const categories = [
-    'Apartment',
-    'House',
-    'Studio',
-    'Commercial',
-    'Office',
-    'Warehouse',
-    'Land',
-    'Other'
-  ];
-
+  const categories = ['Apartment','House','Studio','Commercial','Office','Warehouse','Land','Other'];
+  
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
       ...prev,
