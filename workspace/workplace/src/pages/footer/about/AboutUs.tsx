@@ -118,7 +118,23 @@ export default function About() {
                   </div>
                 </DialogContent>
               </Dialog>
+                    {/* Contact Section */}
+      <div className="text-center mt-16 border-t pt-8">
+        <h2 className="text-xl font-bold">Questions? Get in touch!</h2>
+        <p className="text-gray-600">9am - 6pm on weekdays</p>
+        <div className="flex justify-center space-x-12 mt-4">
+          <div>
+            <p className="font-semibold">📞 Call us</p>
+            <p className="text-gray-700">077 368 6790</p>
+          </div>
+          <div>
+            <p className="font-semibold">✉️ Email us</p>
+            <p className="text-gray-700">support@renteasy.lk</p>
+          </div>
+        </div>
       </div>
+      </div>
+      
       
       {/* Location Dialog */}
       <Dialog open={mapOpen} onOpenChange={setMapOpen}>
@@ -144,6 +160,7 @@ export default function About() {
           </div>
         </DialogContent>
       </Dialog>
+      
 
       {/* Footer */}
       <Footer />
