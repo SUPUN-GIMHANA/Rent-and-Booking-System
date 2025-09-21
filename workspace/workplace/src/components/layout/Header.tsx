@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Search, Heart, MessageCircle, Bell, User, Settings, LogOut, Menu, MapPin, AmpersandIcon, BookDashed, LayoutDashboard, AlignCenter, MagnetIcon, ShieldAlertIcon, LogIn } from 'lucide-react';
+
 interface HeaderProps {
   onLocationSelectClick: () => void;
   onSearch: (query: string) => void;
@@ -19,6 +20,7 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
   const [isLoggedIn] = useState(true);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [authOpen, setAuthOpen] = useState(false)
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,7 +123,7 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
               <Dialog open={loginModalOpen} onOpenChange={setLoginModalOpen}>
                 <DialogContent className="max-w-md p-0 sm:p-8 rounded-lg shadow-xl">
                   <div className="py-2">
-                    <AuthDialog />
+                    <AuthDialog open={authOpen} setOpen={setAuthOpen}/>
                   </div>
                 </DialogContent>
               </Dialog>
@@ -143,7 +145,7 @@ export default function Header({ onLocationSelectClick, onSearch, currentLocatio
                     </button>
                   </DialogClose>
                   <div className="py-2">
-                    <AuthDialog />
+                    <AuthDialog open={authOpen} setOpen={setAuthOpen}/>
                   </div>
                 </DialogContent>
               </Dialog>
