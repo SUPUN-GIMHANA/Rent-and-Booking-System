@@ -5,9 +5,8 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-export function AuthDialog() {
+export function AuthDialog( { open, setOpen }: { open: boolean; setOpen: ( v: boolean) => void } ) {
   const [isLogin, setIsLogin] = useState(true)
-  const [open, setOpen] = useState(true)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
