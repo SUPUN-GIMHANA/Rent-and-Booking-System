@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import EnhancedLeafletMap from '@/components/maps/EnhancedLeafletMap';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import CategoryGrid from '@/components/categories/CategoryGrid';
@@ -17,7 +17,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   const [currentLocation, setCurrentLocation] = useState('');
   const [mapOpen, setMapOpen] = useState(false);
-  const [selectedPosition, setSelectedPosition] = useState<{ lat: number; lng: number } | null>(null);
+  const [selectedPosition, setSelectedPosition] = useState<[number, number] | null>(null);
   const [selectedItem, setSelectedItem] = useState<RentalItem | null>(null);
   const [favoriteItems, setFavoriteItems] = useState<string[]>([]);
 
@@ -57,17 +57,13 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
-  const handleMapClick = (e: google.maps.MapMouseEvent) => {
-    if (e.latLng) {
-      const lat = e.latLng.lat();
-      const lng = e.latLng.lng();
-      setSelectedPosition({ lat, lng });
-    }
+  const handleMapClick = (lat: number, lng: number) => {
+    setSelectedPosition([lat, lng]);
   };
 
   const confirmLocation = () => {
     if (selectedPosition) {
-      setCurrentLocation(`${selectedPosition.lat.toFixed(5)}, ${selectedPosition.lng.toFixed(5)}`);
+      setCurrentLocation(`${selectedPosition[0].toFixed(5)}, ${selectedPosition[1].toFixed(5)}`);
     }
     setMapOpen(false);
   };
@@ -120,16 +116,23 @@ useEffect(() => {
             <DialogTitle>Select a Location</DialogTitle>
           </DialogHeader>
           <div className="h-[400px] w-full">
-            <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-              <GoogleMap
-                mapContainerStyle={{ width: '100%', height: '100%' }}
-                center={selectedPosition || { lat: 6.9271, lng: 79.8612 }}
-                zoom={10}
-                onClick={handleMapClick}
-              >
-                {selectedPosition && <Marker position={selectedPosition} />}
-              </GoogleMap>
-            </LoadScript>
+            <EnhancedLeafletMap
+              center={selectedPosition || [6.9271, 79.8612]}
+              zoom={10}
+              height="400px"
+              onLocationSelect={handleMapClick}
+              selectedPosition={selectedPosition}
+              showSearch={true}
+              showCurrentLocation={true}
+              markers={[
+                {
+                  position: [6.9271, 79.8612],
+                  title: "Colombo",
+                  description: "Capital city of Sri Lanka",
+                  type: "rental"
+                }
+              ]}
+            />
           </div>
           <div className="flex justify-end gap-2 mt-4">
             <Button variant="outline" onClick={() => setMapOpen(false)}>Cancel</Button>
