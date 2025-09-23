@@ -25,8 +25,6 @@ import AboutUs from './pages/footer/about/AboutUs';
 import Conditions from './pages/footer/about/Conditions';
 import Privacy from './pages/footer/about/Privacy';
 import Sitemap from './pages/footer/about/Sitemap';
-import Blog from './pages/footer/blog/Blog';
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -46,7 +44,7 @@ const App = () => (
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/RentalListing" element={<RentalListing />} />
-          <Route path="/login-form" element={<AuthDialog open={true} setOpen={() => {}} />}/>
+          <Route path="/login-form" element={<AuthDialog />} />
           <Route path="/Profile" element={<Profile />} />
           {/* <Route path="/Signup-form" element={<SignupForm />} /> */}
           <Route path="/sell-fast" element={<SellFastPage />} />
@@ -59,7 +57,7 @@ const App = () => (
           <Route path="/Conditions" element={<Conditions />} />
           <Route path="/Privacy" element={<Privacy />} />
           <Route path="/Sitemap" element={<Sitemap />} />
-          <Route path="/Blog" element={<Blog />} />
+
 
           <Route path="*" element={<NotFound />} />
         </Routes>

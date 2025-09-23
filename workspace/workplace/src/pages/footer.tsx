@@ -64,7 +64,7 @@ return (
                   <ul className="space-y-2">
                     <li><a href="#">MotorGuide</a></li>
                     <li><a href="#">PropertyGuide</a></li>
-                    <li><a href="/Blog">Official Blog</a></li>
+                    <li><a href="#">Official Blog</a></li>
                   </ul>
                   <div className="flex space-x-4 mt-4 text-lg">
                     <a href="#"><FaFacebookF /></a>
