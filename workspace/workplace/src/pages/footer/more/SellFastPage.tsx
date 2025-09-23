@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import LeafletMap from '@/components/maps/LeafletMap';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import { Button } from '@/components/ui/button';
@@ -12,23 +12,19 @@ export default function SellFastPage() {
     const navigate = useNavigate();
     const [currentLocation, setCurrentLocation] = useState('');
     const [mapOpen, setMapOpen] = useState(false);
-    const [selectedPosition, setSelectedPosition] = useState<{ lat: number; lng: number } | null>(null);
+    const [selectedPosition, setSelectedPosition] = useState<[number, number] | null>(null);
     const [selectedItem, setSelectedItem] = useState<RentalItem | null>(null);
     const handleLocationSelectClick = () => {
     setMapOpen(true);
 };
 
-const handleMapClick = (e: google.maps.MapMouseEvent) => {
-    if (e.latLng) {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
-        setSelectedPosition({ lat, lng });
-    }
+const handleMapClick = (lat: number, lng: number) => {
+    setSelectedPosition([lat, lng]);
 };
 
 const confirmLocation = () => {
     if (selectedPosition) {
-        setCurrentLocation(`${selectedPosition.lat.toFixed(5)}, ${selectedPosition.lng.toFixed(5)}`);
+        setCurrentLocation(`${selectedPosition[0].toFixed(5)}, ${selectedPosition[1].toFixed(5)}`);
     }
     setMapOpen(false);
 };
